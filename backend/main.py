@@ -29,18 +29,9 @@ try:
     print("✅ Successfully imported modules from current directory")
 
 except ImportError:
-    # Option 2: Local Computer वर (जेव्हा आपण बाहेर असतो)
-    print("⚠️ Importing from parent directory...")
-    # sys.path hack to find the backend folder if needed
-    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-    
-    from backend.agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
-    from backend.tools import (
-        drowsiness_detection_tool,
-        engine_diagnosis_tool, 
-        market_search_tool,
-        expense_validator_tool
-    )
+    # जर वरील फेल झाले तर हे वापरा
+    from agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
+    from tools import drowsiness_detection_tool, engine_diagnosis_tool, market_search_tool, expense_validator_tool
 # Initialize FastAPI app
 app = FastAPI(
     title="Route-Rakshak API",
