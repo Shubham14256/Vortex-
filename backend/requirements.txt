@@ -1,0 +1,12 @@
+streamlit
+crewai
+pandas
+folium
+streamlit-folium
+python-dotenv
+langchain-groq
+langchain-community
+pydantic
+requests
+fastapi
+uvicorn[standard]
