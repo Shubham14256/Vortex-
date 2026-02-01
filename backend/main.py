@@ -17,22 +17,17 @@ import sys
 import os
 
 # Add parent directory to path to import our existing modules
-try:
-    # Option 1: Render वर (जेव्हा आपण backend फोल्डरच्या आत असतो)
-    from agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
-    from tools import (
-        drowsiness_detection_tool,
-        engine_diagnosis_tool, 
-        market_search_tool,
-        expense_validator_tool
-    )
-    print("✅ Successfully imported modules from current directory")
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-except ImportError:
-    # जर वरील फेल झाले तर हे वापरा
-    from agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
-    from tools import drowsiness_detection_tool, engine_diagnosis_tool, market_search_tool, expense_validator_tool
-# Initialize FastAPI app
+# Import our existing AI agents and tools
+from agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
+from tools import (
+    drowsiness_detection_tool,
+    engine_diagnosis_tool, 
+    market_search_tool,
+    expense_validator_tool
+)
+
 app = FastAPI(
     title="Route-Rakshak API",
     description="AI-powered logistics management system backend",
