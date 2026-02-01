@@ -1,8 +1,20 @@
-fastapi
-uvicorn[standard]
-python-dotenv
-pydantic
-requests
-crewai
-langchain-groq
-langchain-community
+# FastAPI Backend Dependencies for Route-Rakshak Logistics App
+# Python 3.9+
+
+# Core Framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+
+# HTTP Client
+requests==2.32.3
+
+# Data Validation
+pydantic==2.10.3
+
+# CORS Support (included with FastAPI)
+# python-multipart==0.0.12  # Uncomment if you need file upload support
+
+# Optional: If you want to use the AI agents (requires GROQ_API_KEY)
+# crewai==0.86.0
+# langchain-groq==0.2.1
+# python-dotenv==1.0.1
