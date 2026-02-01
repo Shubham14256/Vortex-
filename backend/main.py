@@ -17,17 +17,30 @@ import sys
 import os
 
 # Add parent directory to path to import our existing modules
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    # Option 1: Render वर (जेव्हा आपण backend फोल्डरच्या आत असतो)
+    from agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
+    from tools import (
+        drowsiness_detection_tool,
+        engine_diagnosis_tool, 
+        market_search_tool,
+        expense_validator_tool
+    )
+    print("✅ Successfully imported modules from current directory")
 
-# Import our existing AI agents and tools
-from agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
-from tools import (
-    drowsiness_detection_tool,
-    engine_diagnosis_tool, 
-    market_search_tool,
-    expense_validator_tool
-)
-
+except ImportError:
+    # Option 2: Local Computer वर (जेव्हा आपण बाहेर असतो)
+    print("⚠️ Importing from parent directory...")
+    # sys.path hack to find the backend folder if needed
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    
+    from backend.agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
+    from backend.tools import (
+        drowsiness_detection_tool,
+        engine_diagnosis_tool, 
+        market_search_tool,
+        expense_validator_tool
+    )
 # Initialize FastAPI app
 app = FastAPI(
     title="Route-Rakshak API",
@@ -36,12 +49,10 @@ app = FastAPI(
 )
 
 # Enable CORS for React frontend
+# 🔍 या ओळी बदलून खालीलप्रमाणे कर:
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000", "http://127.0.0.1:3000",
-        "http://localhost:3001", "http://127.0.0.1:3001"
-    ],  # React dev server
+    allow_origins=["*"],  # 👈 हे केल्याने जगातील कोणतीही लिंक (Vercel/Local) कनेक्ट होऊ शकते.
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
