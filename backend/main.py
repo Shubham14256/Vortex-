@@ -19,14 +19,17 @@ import os
 # Add parent directory to path to import our existing modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Import our existing AI agents and tools
-from agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
-from tools import (
-    drowsiness_detection_tool,
-    engine_diagnosis_tool, 
-    market_search_tool,
-    expense_validator_tool
-)
+print("⚠️ Importing from parent directory...")
+    # sys.path hack to find the backend folder if needed
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    
+    from backend.agents import get_safety_agent, get_mechanic_agent, get_logistics_agent, get_finance_agent
+    from backend.tools import (
+        drowsiness_detection_tool,
+        engine_diagnosis_tool, 
+        market_search_tool,
+        expense_validator_tool
+    )
 
 app = FastAPI(
     title="Route-Rakshak API",
