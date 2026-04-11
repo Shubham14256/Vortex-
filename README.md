@@ -10,6 +10,8 @@
 ---
 
 # Demo Link - https://drive.google.com/drive/folders/165MY9_UcJ20DTLKXNeAaToB7C3Ba8YdL?usp=sharing 
+<img width="1902" height="973" alt="image" src="https://github.com/user-attachments/assets/aa88f8a3-0e08-4590-a66e-da14d78e0366" />
+
 
 # Frontend Link - https://vortex-logistics-ai-advanced-decisi.vercel.app/
 
